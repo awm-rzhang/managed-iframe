@@ -5,12 +5,13 @@
         Elo app management
     </title>
     <script src="https://apis.google.com/js/api.js"></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
 </head>
 
 <body>
     <!-- <div id="buttonDiv"></div> -->
-    <a href="https://developers.google.com/android/management/reference/rest/v1/enterprises.webTokens/create?apix_params=%7B%22parent%22%3A%22enterprises%2FLC0391gcv5%22%2C%22resource%22%3A%7B%22parentFrameUrl%22%3A%22https%3A%2F%2Fawm-rzhang.github.io%2F%22%7D%7D" target="_blank">
+    <a href="https://developers.google.com/android/management/reference/rest/v1/enterprises.webTokens/create?apix_params=%7B%22parent%22%3A%22enterprises%2FLC0391gcv5%22%2C%22resource%22%3A%7B%22parentFrameUrl%22%3A%22https%3A%2F%2Fawm-rzhang.github.io%2F%22%7D%7D"
+        target="_blank">
         Management API
     </a>
     <input type="text" aria-label="web-token" id="web-token">
@@ -63,9 +64,9 @@
         const loadIframe = (webToken) => {
             gapi.load('gapi.iframes', function () {
                 var options = {
-                    'url': `https://play.google.com/work/embeded/search?token=${webToken}&mode=SELECT`,
+                    'url': `https://play.google.com/work/embedded/search?token=${webToken}&mode=SELECT`,
                     'where': document.getElementById('container'),
-                    'attributes': { style: 'height:1000px', scrolling: 'yes' }
+                    'attributes': { style: 'width: 600px; height:1000px', scrolling: 'yes' }
                 }
 
                 var iframe = gapi.iframes.getContext().openChild(options);
