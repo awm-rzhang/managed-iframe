@@ -9,11 +9,15 @@
 </head>
 
 <body>
-    <div id="buttonDiv"></div>
+    <!-- <div id="buttonDiv"></div> -->
+    <a href="https://developers.google.com/android/management/reference/rest/v1/enterprises.webTokens/create?apix_params=%7B%22parent%22%3A%22enterprises%2FLC0391gcv5%22%2C%22resource%22%3A%7B%22parentFrameUrl%22%3A%22https%3A%2F%2Fawm-rzhang.github.io%2F%22%7D%7D" target="_blank">
+        Management API
+    </a>
+    <input type="text" aria-label="web-token" id="web-token">
     <button id="start-btn">Start</button>
-    <div id="container" style="width: 1000px; height: 1000px"></div>
+    <!-- <div id="container" style="width: 1000px; height: 1000px"></div> -->
 
-    <script>
+    <!-- <script>
         let bearerToken;
         function handleCredentialResponse(response) {
 
@@ -33,25 +37,25 @@
             );
             google.accounts.id.prompt(); // also display the One Tap dialog
         }
-    </script>
+    </script> -->
 
     <script>
 
         let webToken;
 
         document.getElementById("start-btn").addEventListener('click', async () => {
-            const response = await fetch('https://androidmanagement.googleapis.com/v1/enterprises/LC0391gcv5/webTokens', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${bearerToken}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "parentFrameUrl": "https://awm-rzhang.github.io/"
-                }), // string or object
-            });
+            // const response = await fetch('https://androidmanagement.googleapis.com/v1/enterprises/LC0391gcv5/webTokens', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Authorization': `Bearer ${bearerToken}`,
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({
+            //         "parentFrameUrl": "https://awm-rzhang.github.io/"
+            //     }), // string or object
+            // });
 
-            webToken = reponse.value;
+            webToken = document.getElementById("web-token").value;
             loadIframe(webToken);
         });
 
