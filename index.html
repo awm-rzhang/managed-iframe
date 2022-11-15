@@ -15,7 +15,7 @@
     </a>
     <input type="text" aria-label="web-token" id="web-token">
     <button id="start-btn">Start</button>
-    <!-- <div id="container" style="width: 1000px; height: 1000px"></div> -->
+    <div id="container" style="width: 1000px; height: 1000px"></div>
 
     <!-- <script>
         let bearerToken;
@@ -56,6 +56,7 @@
             // });
 
             webToken = document.getElementById("web-token").value;
+            console.log(webToken);
             loadIframe(webToken);
         });
 
