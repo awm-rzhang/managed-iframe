@@ -43,7 +43,7 @@
 
         let webToken;
 
-        document.getElementById("start-btn").addEventListener('click', async () => {
+        document.getElementById("start-btn").addEventListener('click', () => {
             // const response = await fetch('https://androidmanagement.googleapis.com/v1/enterprises/LC0391gcv5/webTokens', {
             //     method: 'POST',
             //     headers: {
@@ -63,7 +63,7 @@
         const loadIframe = (webToken) => {
             gapi.load('gapi.iframes', function () {
                 var options = {
-                    'url': `https://play.google.com/managed/mcm?token=${webToken}&packageName=app_package_name`,
+                    'url': `https://play.google.com/work/embeded/search?token=${webToken}&mode=SELECT`,
                     'where': document.getElementById('container'),
                     'attributes': { style: 'height:1000px', scrolling: 'yes' }
                 }
