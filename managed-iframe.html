@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <title>
+        Elo app management
+    </title>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+    <div id="buttonDiv"></div>
+    <button id="start-btn">Start</button>
+    <div id="container" style="width: 1000px; height: 1000px"></div>
+
+    <script>
+        let bearerToken;
+        function handleCredentialResponse(response) {
+
+            for (const [key, value] of Object.entries(response)) {
+                console.log(`${key}: ${value}`);
+            }
+            bearerToken = response.credential;
+        }
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: "253818320652-0fuvtnalbjj486tf22c9g8c0vn640ahh",
+                callback: handleCredentialResponse
+            });
+            google.accounts.id.renderButton(
+                document.getElementById("buttonDiv"),
+                { theme: "outline", size: "large" }  // customization attributes
+            );
+            google.accounts.id.prompt(); // also display the One Tap dialog
+        }
+    </script>
+
+    <script>
+
+        let webToken;
+
+        document.getElementById("start-btn").addEventListener('click', async () => {
+            const response = await fetch('https://androidmanagement.googleapis.com/v1/enterprises/LC0391gcv5/webTokens', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${bearerToken}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "parentFrameUrl": "https://awm-rzhang.github.io/"
+                }), // string or object
+            });
+
+            webToken = reponse.value;
+            loadIframe(webToken);
+        });
+
+        const loadIframe = (webToken) => {
+            gapi.load('gapi.iframes', function () {
+                var options = {
+                    'url': `https://play.google.com/managed/mcm?token=${webToken}&packageName=app_package_name`,
+                    'where': document.getElementById('container'),
+                    'attributes': { style: 'height:1000px', scrolling: 'yes' }
+                }
+
+                var iframe = gapi.iframes.getContext().openChild(options);
+            });
+        }
+    </script>
+</body>
+
+</html>
